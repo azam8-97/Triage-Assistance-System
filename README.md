@@ -119,17 +119,17 @@ Backend environment variables to set in Render:
 
 - `JWT_SECRET` (required)
 - `SUPABASE_DB_URL` (required, or use `DATABASE_URL`)
-- `NER_API_URL` (optional, defaults to current HF NER endpoint)
-- `CLF_API_URL` (optional, defaults to current HF classifier endpoint)
+- `NER_API_URL` (optional, defaults to the HF NER endpoint below)
+- `CLF_API_URL` (optional, defaults to the HF classifier endpoint below)
 - `CORS_ORIGINS` (optional, use `*` or your Vercel domain list)
 
 ### 2. Connect Frontend on Vercel
 
-After Render gives you a live backend URL, for example `https://ctas-backend.onrender.com`, set:
+After Render gives you a live backend URL, for example `https://triage-assistance-system.onrender.com`, set:
 
 ```env
-VITE_HF_API_URL=https://ctas-backend.onrender.com/api/triage
-VITE_API_URL=https://ctas-backend.onrender.com/api
+VITE_HF_API_URL=https://triage-assistance-system.onrender.com/api/triage
+VITE_API_URL=https://triage-assistance-system.onrender.com/api
 ```
 
 Important:
@@ -185,10 +185,17 @@ The backend applies post-prediction safety rules:
 - **Backend:** Flask, Flask-CORS, PyJWT, psycopg2
 - **Database:** Supabase (PostgreSQL)
 - **ML Models:** BioBERT NER + BioBERT Sequence Classifier (hosted on HF Spaces)
-- **NER API:** https://harsh710000-ctas-ner-api.hf.space
-- **Classifier API:** https://harsh710000-biobert-classifier-api.hf.space
+- **NER API:** https://huggingface.co/spaces/azam897/TAS_NER_Extractor
+- **Classifier API:** https://huggingface.co/spaces/azam897/biobert_classifier_api
    - Set up RAG pipeline with vector database
    - Connect to frontend APIs
+
+## Live Demos & Model Endpoints
+
+- **Vercel frontend:** https://triage-assistance-system.vercel.app/
+- **Render backend:** https://triage-assistance-system.onrender.com/
+- **BioBERT Classifier (HF Space):** https://huggingface.co/spaces/azam897/biobert_classifier_api
+- **BioBERT NER (HF Space):** https://huggingface.co/spaces/azam897/TAS_NER_Extractor
 
 3. **Model Training** (Week 6-9)
    - Fine-tune BioBERT for medical NER
